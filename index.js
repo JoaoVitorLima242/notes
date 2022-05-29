@@ -6,9 +6,15 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 8000;
 
+// Template Engine
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+app.use(express.static('public'));
+
 // Rotas
 app.get('/', (req, res) => {
-    res.send('App esta rodando');
+
+    res.render('home')
 })
 
 app.listen(PORT, () => {
