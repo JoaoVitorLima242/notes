@@ -8,16 +8,20 @@
         </tr>
     </thead>
     <tbody>
+        {{#each notes}}
         <tr>
-            <td scope="row">01</td>
-            <td class="title-column"><a href="#">meu titulo</a></td>
+            <td scope="row">{{@index}}</td>
+            <td class="title-column"><a href="notes/{{this._id}}">{{this.title}}</a></td>
             <td class="actions-column">
-                <a href="#" class="btn btn-primary">Editar</a>
+                <a href="notes/edit/{{this._id}}" class="btn btn-primary">Editar</a>
                 <form action="notes/delete" method="POST">
-                    <input type="hidden" name="name01">
+                    <input type="hidden" name="{{this._id}}">
                     <input type="submit" class="btn btn-danger" value="Remover">
                 </form>
             </td>
         </tr>
+        {{else}}
+            <p>Não a notas no sistema ainda. <a href="notes"> Clique aqui para adicionar!</a></p>
+        {{/each}}
     </tbody>
 </table>

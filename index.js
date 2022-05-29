@@ -22,9 +22,16 @@ const notesRoutes = require('./routes/notes');
 app.use('/notes', notesRoutes)
 
 // Rotas
-app.get('/', (req, res) => {
+app.get('/',async (req, res) => {
 
-    res.render('home')
+    const notes = await db.getDb()
+    .db()
+    .collection('notes')
+    .find({})
+    .toArray();
+    
+    res.render('home', {notes});
+
 })
 
 db.initDb((err, db) => {
