@@ -11,6 +11,11 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
+// Importacao de rotas
+const notesRoutes = require('./routes/notes');
+
+app.use('/notes', notesRoutes)
+
 // Rotas
 app.get('/', (req, res) => {
 
