@@ -47,6 +47,21 @@ router.get('/edit/:id', async (req, res) => {
 
 })
 
+router.post ('/update', async (req, res) => {
+
+    const { title, description, id} = req.body;
+    const objId = new ObjectId(id);
+
+    console.log(objId)
+
+    db.getDb()
+        .db()
+        .collection('notes')
+        .updateOne({_id: objId}, {$set: {title:title, desc: description}});
+
+    res.redirect(301, '/')
+})
+
 router.post('/delete', (req, res) => {
 
     const data = req.body;    
